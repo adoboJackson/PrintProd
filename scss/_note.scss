@@ -1,0 +1,20 @@
+//from: http://nicolasgallagher.com/pure-css-folded-corner-effect/
+
+.note{
+	position: relative;
+	padding: 20px;
+	background: $orange;
+	color: white;
+	margin: 20px;
+	&:before {
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  border-width: 0 16px 16px 0;
+	  border-style: solid;
+	  border-color: lighten($orange, 20) #fff;
+	  box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+	}
+}
+
