@@ -45,29 +45,50 @@ small,
 .note {
   position: relative;
   padding: 20px;
-  background: #ff851b;
   color: white;
-  margin: 20px;
+  overflow: hidden;
 }
 
-.note:before {
+.note:hover:after {
+  border-width: 0 24px 24px 0;
+}
+
+.note:after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
   border-width: 0 16px 16px 0;
   border-style: solid;
-  border-color: #ffbc81 white;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: border-width 0.5s ease;
+  transition: border-width 0.5s ease;
 }
 
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin: none;
+  padding: none;
+}
+
+h2 {
   margin: 0;
-  padding: 0;
+}
+
+.timeline-holder {
+  position: absolute;
+  overflow-x: auto;
+  width: auto;
+  left: 0;
+}
+
+.timeline {
+  background: #EEE;
+  width: 200%;
+  padding: 20px 0;
 }
 
 .day {
@@ -80,34 +101,101 @@ small,
   text-align: center;
 }
 
+.day:nth-child(1) {
+  border-left: none;
+}
+
 .day a {
-  width: 100%;
-  height: 100%;
+  top: 1.25em;
+  right: 2px;
+  bottom: 0;
+  left: 2px;
   display: block;
   position: absolute;
-  background: red;
-  z-index: 1;
-}
-
-.day:before {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.day:after {
-  content: "TT";
-  position: relative;
-  width: 40px;
-  margin: 0 auto;
-  top: 1em;
-  display: block;
-  text-align: center;
-  padding: 3px;
-  background: #333;
+  padding: 2px;
   border-radius: 5px;
   color: white;
+  text-align: center;
+  line-height: 100%;
+  text-decoration: none;
+}
+
+.day a.tt {
+  background: #ff851b;
+}
+
+.day a.tt:after {
+  content: "tt";
+}
+
+.day a.tt:hover {
+  background: #b45400;
+}
+
+.day a.du {
+  background: #7fdbff;
+}
+
+.day a.du:after {
+  content: "du";
+}
+
+.day a.du:hover {
+  background: #19beff;
+}
+
+.note {
+  display: none;
+  position: absolute;
+  top: 100px;
+  width: 400px;
+  margin-left: -200px;
+  left: 50%;
+  z-index: 1000;
+}
+
+.note .close-btn {
+  border: none;
+  background: white;
+  color: #333;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.note.tt {
+  background: #ff851b;
+}
+
+.note.tt:after {
+  border-color: #ffa04e white;
+}
+
+.note.du {
+  background: #7fdbff;
+}
+
+.note.du:after {
+  border-color: #b2e9ff white;
+}
+
+.note.active {
+  display: block;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 999;
+  display: none;
+}
+
+.note.active + .cover {
+  display: block;
 }
 
 .timeline .day:nth-child(0):before {
@@ -228,4 +316,8 @@ small,
 
 .timeline .day:nth-child(29):before {
   content: "29";
+}
+
+.timeline .day:nth-child(30):before {
+  content: "30";
 }
