@@ -14,17 +14,22 @@
 				count++;
 		}
 		$('.timeline').css({width: 50*count});
-		$('.timeline-holder, .close-btn, .cover').css({width: '100%'});
+		$('.timeline-holder, .cover').css({width: '100%'});
 	  $('.timeline a.tt').on('click',
 	  		function(event){
 				event.preventDefault();
 				$('.note.tt').addClass('active');
+				$('.cover').addClass('active');
+				$('#main-container').addClass('active');
+
 	  		}
 	  	);
 	  	 $('.timeline a.du').on('click',
 	  		function(event){
 				event.preventDefault();
 				$('.note.du').addClass('active');
+				$('.cover').addClass('active');
+				$('#main-container').addClass('active');
 	  		}
 	  	);
 	  	$('.cover, .close-btn').on('click',

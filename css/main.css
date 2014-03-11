@@ -47,23 +47,12 @@ small,
   padding: 20px;
   color: white;
   overflow: hidden;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .note:hover:after {
   border-width: 0 24px 24px 0;
-}
-
-.note:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-width: 0 16px 16px 0;
-  border-style: solid;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
-  -webkit-transition: border-width 0.5s ease;
-  transition: border-width 0.5s ease;
 }
 
 * {
@@ -74,8 +63,35 @@ small,
   padding: none;
 }
 
+h1 {
+  color: #aaaaaa;
+  text-transform: uppercase;
+  font-size: 2.5em;
+}
+
 h2 {
+  color: white;
   margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+#main-container {
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  /* prefix me */
+}
+
+#main-container.active {
+  /* Blur and de-color */
+  -webkit-filter: blur(3px) grayscale(50%);
+  filter: blur(3px) grayscale(50%);
+  /* Recede */
+  -webkit-transform: scale(0.98);
+  -ms-transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 .timeline-holder {
@@ -118,6 +134,7 @@ h2 {
   text-align: center;
   line-height: 100%;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .day a.tt {
@@ -145,22 +162,47 @@ h2 {
 }
 
 .note {
-  display: none;
+  display: block;
   position: absolute;
+  left: -1000px;
   top: 100px;
   width: 400px;
   margin-left: -200px;
-  left: 50%;
   z-index: 1000;
+  -webkit-transition: opacity, -webkit-transform 0.2s ease;
+  transition: opacity, transform 0.2s ease;
+  /* prefix me */
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
+  opacity: 0;
+}
+
+.note.active {
+  left: 50%;
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
 }
 
 .note .close-btn {
-  border: none;
-  background: white;
-  color: #333;
-  padding: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  display: block;
+  color: #111111;
+  width: 100%;
+  padding: 5px 10px;
   border-radius: 5px;
   text-decoration: none;
+  margin-top: 20px;
+  font-family: "Varela Round", sans-serif;
+  text-align: right;
+  float: right;
+}
+
+.note .close-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: #111111;
 }
 
 .note.tt {
@@ -179,13 +221,10 @@ h2 {
   border-color: #b2e9ff white;
 }
 
-.note.active {
-  display: block;
-}
-
 .cover {
-  width: 100%;
-  height: 100%;
+  content: "";
+  width: 2000px;
+  height: 2000px;
   position: absolute;
   top: 0;
   left: 0;
@@ -194,7 +233,7 @@ h2 {
   display: none;
 }
 
-.note.active + .cover {
+.cover.active {
   display: block;
 }
 

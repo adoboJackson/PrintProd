@@ -17,8 +17,27 @@ $days: 0;
 	margin: none;
 	padding: none;
 }
+h1{
+  color: $gray;
+  text-transform: uppercase;
+  font-size: 2.5em;
+}
+
 h2{
+  color: white;
   margin: 0;
+}
+p{
+  margin: 0;
+}
+#main-container{
+  transition: all 0.2s ease; /* prefix me */
+  &.active{
+    /* Blur and de-color */
+    filter: blur(3px) grayscale(50%);
+    /* Recede */
+    transform: scale(0.98);
+  }
 }
 .timeline-holder{
   position: absolute;
@@ -55,6 +74,7 @@ h2{
     text-align: center;
     line-height: 100%;
     text-decoration: none;
+    text-transform: uppercase;
     &.tt{
         @include popup-type($orange,'tt');
     }
@@ -65,20 +85,39 @@ h2{
 
 }
 .note{
-  display: none;
+  display: block;
   position: absolute;
+  left:-1000px;
   top: 100px;
   width: 400px;
   margin-left: -200px;
-  left: 50%;
   z-index: 1000;
+  transition: opacity, transform 0.2s ease; /* prefix me */
+  transform: scale(0.5);
+  opacity: 0;
+  &.active{
+    left: 50%;
+    opacity: 1;
+    transform: scale(1);
+
+  }
   .close-btn{
-    border: none;
-    background: white;
-    color: #333;
-    padding: 5px;
+    background: rgba(255,255,255,.25);
+    display: block;
+    color: $black;
+    width: 100%;
+    padding: 5px 10px;
     border-radius: 5px;
     text-decoration: none;
+    margin-top: 20px;
+    font-family: $rounded;
+    text-align: right;
+    float: right;
+    &:hover{
+      background: rgba(255,255,255,.5);
+      color: $black;
+    }
+
   }
 }
 .note.tt{
@@ -93,22 +132,23 @@ h2{
   &:after{
       border-color: lighten($aqua, 10) #fff;
   }
-
 }
-.note.active{ display: block;}
+
 .cover{
-  width: 100%;
-  height: 100%;
+  content:"";
+  width: 2000px;
+  height: 2000px;
   position: absolute;
   top: 0;
   left: 0;
   background: rgba(0,0,0,.25);
   z-index: 999;
   display: none;
+  &.active{
+    display: block;
 
-}
-.note.active + .cover{
-  display: block;
+  }
+  
 }
 
 
